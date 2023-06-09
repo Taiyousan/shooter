@@ -1,0 +1,134 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+
+html,
+body
+{
+    overflow: hidden;
+    font-family: 'Bitter', serif;
+font-family: 'Roboto', sans-serif;
+}
+
+.webgl
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+.viseur {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    z-index: 50;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.viseur img {
+    width: 3em;
+}
+
+.interface {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 3em;
+    background-color: aliceblue;
+    z-index: 50;
+}
+
+.interface > .compteur {
+    background-color: aquamarine;
+    width: 4em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.interface > .compteur > p {
+    color: black;
+}
+
+.gun {
+    position: absolute;
+    bottom: -1em;
+    right: 30%;
+    z-index: 50;
+}
+
+.gun > img {
+    width: 16em;
+}
+
+.score-add {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    z-index: 50;
+    opacity: 0;
+    transition: 0s;
+}
+
+.score-add-active {
+    opacity: 1;
+    transform: translate(-50%, -150%);
+    transition: 0.2s;
+}
+
+.score-add > img {
+    width: 3em;
+}
+
+.startscreen {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(188, 188, 188, 0.644);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.startscreen-content {
+    background-color: rgba(255, 255, 255, 0.801);
+    padding: 5em;
+    box-shadow: 0 0 10px black;
+    border-radius: 20px;
+}
+
+.controles {
+    display: flex;
+    flex-direction: row;
+}
+
+.control-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 20px;
+    background-color: white;
+    /* gap: 1em; */
+    height: 10em;
+    width: 10em;
+}
+
+.control-card img {
+    width: 5em;
+}

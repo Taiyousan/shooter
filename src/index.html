@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21 - Physics</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="startscreen">
+        <div class="startscreen-content">
+            <p>Clic gauche pour démarrer ou reprendre.</p>
+        </div>
+        <div class="controles">
+            <div class="control-card control-demarrer">
+                <img src="img/left-click.png" alt="">
+                <p>Démarrer / Tirer</p>
+            </div>
+            <div class="control-card control-demarrer">
+                <img src="img/right-click.png" alt="">
+                <p>Pause</p>
+            </div>
+            <div class="control-card control-demarrer">
+                <img src="img/left-click.png" alt="">
+                <p>Démarrer</p>
+            </div>
+            <div class="control-card control-demarrer">
+                <img src="img/left-click.png" alt="">
+                <p>Démarrer</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="viseur viseur-unactive">
+        <img src="/img/pointer.svg" alt="">
+    </div>
+    <div class="viseur viseur-active hidden">
+        <img src="/img/pointer-active.svg" alt="">
+    </div>
+    <div class="interface">
+        <div class="compteur">
+            <p>0</p>
+        </div>
+    </div>
+
+    <div class="score-add">
+        <img src="/img/score-add.png" alt="">
+    </div>
+
+    <div class="gun">
+        <img src="/img/gun.png" alt="">
+    </div>
+    <canvas class="webgl"></canvas>
+    <script type="module" src="./script.js"></script>
+</body>
+</html>
