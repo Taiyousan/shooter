@@ -8,6 +8,7 @@ import gsap from 'gsap'
 
 const textureLoader = new THREE.TextureLoader()
 const fbxLoader = new FBXLoader()
+const cubeTextureLoader = new THREE.CubeTextureLoader()
 /**
  * Debug
  */
@@ -30,14 +31,25 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 const sky = textureLoader.load('textures/mario.png');
-scene.background = sky
+
+/**
+ * Environment Maps
+ */
+const env2 = cubeTextureLoader.load([
+    '/textures/env2Maps/3/px.jpg',
+    '/textures/env2Maps/3/nx.jpg',
+    '/textures/env2Maps/3/py.jpg',
+    '/textures/env2Maps/3/ny.jpg',
+    '/textures/env2Maps/3/pz.jpg',
+    '/textures/env2Maps/3/nz.jpg'
+])
+
+scene.background = env2
 
 
 /**
  * Textures
  */
-
-const cubeTextureLoader = new THREE.CubeTextureLoader()
 
 const environmentMapTexture = cubeTextureLoader.load([
     '/textures/environmentMaps/0/px.png',
@@ -160,7 +172,7 @@ scene.add(floor)
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.7)
 scene.add(ambientLight)
 
-const directionalLight = new THREE.DirectionalLight(0xffffff, 0.2)
+const directionalLight = new THREE.DirectionalLight(0xffffff, 3)
 directionalLight.castShadow = true
 directionalLight.shadow.mapSize.set(1024, 1024)
 directionalLight.shadow.camera.far = 15
@@ -221,6 +233,7 @@ scene.add(camera)
 /**
  * Controls
  */
+const appScreen = document.documentElement; 
 const controls = new PointerLockControls(camera, canvas)
 controls.pointerSpeed = 0.3
 console.log(controls)
@@ -228,6 +241,7 @@ console.log(controls)
 document.addEventListener('click', function () {
     controls.lock();
     document.querySelector('.startscreen').style.display = 'none';
+    appScreen.requestFullscreen();
   });
   // -- Quitter les controles
 
@@ -241,6 +255,7 @@ document.addEventListener('click', function () {
         if(e.button === 2){
         controls.unlock();
         document.querySelector('.startscreen').style.display = 'flex'; 
+        document.exitFullscreen();
         }
     
   });
@@ -421,6 +436,19 @@ const tick = () =>
         target.children[1].children[0].position.z = Math.sin(elapsedTime * speed) * amplitude + (amplitude + 1);
       }
 
+    for (const target of targets) {
+        const { amplitude, speed } = target.userData;
+        target.children[1].children[0].position.x = Math.sin(elapsedTime * speed) * amplitude + (amplitude + 1);
+      }
+    for (const target of targets) {
+        const { amplitude, speed } = target.userData;
+        target.children[1].children[0].position.y = Math.sin(elapsedTime * speed) * amplitude + (amplitude + 1);
+      }
+    for (const target of targets) {
+        const { amplitude, speed } = target.userData;
+        target.children[1].children[0].rotation.z = Math.sin(elapsedTime * 0.001) * amplitude + (amplitude + 1);
+      }
+
     // Update raycaster
     updateRaycaster(raycasterViseur)
     const viseurUnactive = document.querySelector('.viseur-unactive')
@@ -441,6 +469,7 @@ const tick = () =>
     
 
     // Render
+    renderer.physicallyCorrectLights = true
     renderer.render(scene, camera)
 
     // Call tick again on the next frame
